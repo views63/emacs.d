@@ -13,13 +13,13 @@
 ;; (set-default-font "Monaco:pixelsize=18")
 (set-default-font "-outline-Tsentsiu Mono HG-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1")
 (set-fontset-font (frame-parameter nil 'font)
-                  'han (font-spec :family "Microsoft Yahei" :size 18))
+                  'han (font-spec :family "Tsentsiu Mono HG" :size 18))
 (set-fontset-font (frame-parameter nil 'font)
-                  'symbol (font-spec :family "Microsoft Yahei" :size 18))
+                  'symbol (font-spec :family "Tsentsiu Mono HG" :size 18))
 (set-fontset-font (frame-parameter nil 'font)
-                  'cjk-misc (font-spec :family "Microsoft Yahei" :size 18))
+                  'cjk-misc (font-spec :family "Tsentsiu Mono HG" :size 18))
 (set-fontset-font (frame-parameter nil 'font)
-                  'bopomofo (font-spec :family "Microsoft Yahei" :size 18))
+                  'bopomofo (font-spec :family "Tsentsiu Mono HG" :size 18))
 
 ;; 指定新建buffer的默认编码为utf-8
 (setq default-buffer-file-coding-system 'utf-8)
@@ -521,7 +521,7 @@
 ;; yasnippet
 (require 'yasnippet)
 (yas-global-mode 1)
-(add-to-list 'yas/root-directory "~/.emacs.d/snippets")
+;; (add-to-list 'yas/root-directory "~/.emacs.d/snippets")
 
 ;;; 自动补全  http://blog.csdn.net/winterTTr/article/details/7524336
 ;; (add-to-list 'load-path "~/plugings/pos-tip")
