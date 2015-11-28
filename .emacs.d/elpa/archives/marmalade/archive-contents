@@ -927,7 +927,7 @@
 	   [(1 4)
 	    nil "pattern matching for elisp" single])
  (shackle .
-	  [(0 7 0)
+	  [(0 8 0)
 	   ((cl-lib
 	     (0 5)))
 	   "Enforce rules for popups" single])
@@ -994,7 +994,7 @@
 	  [(20110708)
 	   nil "Mode-specific scratch buffers" single])
  (scpaste .
-	  [(0 6 3)
+	  [(0 6 4)
 	   ((htmlize
 	     (1 39)))
 	   "Paste to the web via scp." single])

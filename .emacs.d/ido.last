@@ -1,0 +1,26 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("d:/Emacs/" . "home/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "d:/Emacs/home/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ ".custom.el"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("d:/Emacs/home/" (22106 5770 0 0) "README.md" "plugings/" "global/" "emacs.reg" "desktop/" ".gitignore" ".git/" ".emacs.d/" ".custom.el" ".backups/" "../" "./")
+
+ ("d:/Emacs/" (22106 5832 0 0) "var/" "share/" "libexec/" "home/" "bin/" "../" "./")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

@@ -49,11 +49,11 @@
 ;;(setq default-frame-alist
 ;;      '((height . 40) (width . 150)))
 
-;;设置窗口位置为屏库左上角(0,0)
+;;设置窗口位置为屏幕左上角(0,0)
 (set-frame-position (selected-frame) 30 30)
 
 ;;设置宽和高
-(set-frame-width (selected-frame) 150)
+(set-frame-width (selected-frame) 120)
 (set-frame-height (selected-frame) 35)
 
 ;;高亮当前行
@@ -632,3 +632,27 @@
 (setenv "PATH" (concat "~/gtags" (getenv "PATH")))
 (setq exec-path (append exec-path '("~/gtags")))
 ;; (setq exec-path (cons "~/gtags" exec-path))
+
+;; 警告等级
+(setq warning-minimum-level :error)
+
+;; 在行末或行中位置复制整行
+(defadvice kill-ring-save (before slickcopy activate compile)
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+      (list (line-beginning-position)
+            (line-beginning-position 2)))))
+
+;; 在行末或行中位置删除整行
+(defadvice kill-region (before slickcut activate compile)
+  (interactive
+   (if mark-active (list (region-beginning) (region-end))
+     (list (line-beginning-position)
+           (line-beginning-position 2))))) 
+
+;; ace-jump-mode
+(add-to-list 'load-path "~/plugings/ace-jump/")
+(require 'ace-jump-mode)
+(eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
