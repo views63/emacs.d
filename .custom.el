@@ -11,15 +11,16 @@
 
 ;; This is a font configuration example for Chinese
 ;; (set-default-font "Monaco:pixelsize=18")
+;; (set-face-attribute 'default nil :font "Inconsolata 17") ;: height 130
 (set-default-font "-outline-Tsentsiu Mono HG-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1")
-(set-fontset-font (frame-parameter nil 'font)
-                  'han (font-spec :family "Tsentsiu Mono HG" :size 18))
-(set-fontset-font (frame-parameter nil 'font)
-                  'symbol (font-spec :family "Tsentsiu Mono HG" :size 18))
-(set-fontset-font (frame-parameter nil 'font)
-                  'cjk-misc (font-spec :family "Tsentsiu Mono HG" :size 18))
-(set-fontset-font (frame-parameter nil 'font)
-                  'bopomofo (font-spec :family "Tsentsiu Mono HG" :size 18))
+
+;; Chinese Font
+(dolist (charset '(han gb18030 chinese-gbk bopomofo cjk-misc symbol))
+  (set-fontset-font t charset (font-spec :family "Tsentsiu Mono HG" :size 18)))
+
+(set-fontset-font t 'unicode "Symbola" nil 'append)
+(set-fontset-font t 'unicode "Segoe UI Emoji" nil 'append)
+(set-fontset-font t 'unicode "STIX" nil 'append)
 
 ;; 指定新建buffer的默认编码为utf-8
 (setq default-buffer-file-coding-system 'utf-8)
@@ -40,6 +41,10 @@
 ;; problem when saving files.
 (setq save-buffer-coding-system 'utf-8)
 (setq coding-system-for-write 'utf-8)
+
+(set-default 'process-coding-system-alist
+      '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
+	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)))
 
 ;;将utf-8放到编码顺序表的最开始，即先从utf-8开始识别编码，此命令可以多次使用，后指定的编码先探测  
 (prefer-coding-system 'utf-8)
@@ -471,7 +476,7 @@
 ;; 设置tabbar外观
 ;; 设置默认主题: 字体, 背景和前景颜色，大小
 (set-face-attribute 'tabbar-default nil
-                                        ;:family "Monaco"
+                    ;:family "Monaco"
                     :background "gray80"
                     :foreground "gray30"
                     :height 1.0
@@ -656,3 +661,6 @@
 (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
+	
+;; 减少垃圾回收加快Emacs的运行 
+(setq gc-cons-threshold (* 50 1024 1024))
