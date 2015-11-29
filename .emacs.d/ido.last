@@ -17,7 +17,7 @@
 
 ;; ----- ido-dir-file-cache -----
 (
- ("d:/Emacs/home/" (22106 5770 0 0) "README.md" "plugings/" "global/" "emacs.reg" "desktop/" ".gitignore" ".git/" ".emacs.d/" ".custom.el" ".backups/" "../" "./")
+ ("d:/Emacs/home/" (22106 6989 0 0) "README.md" "plugings/" "global/" "emacs.reg" "desktop/" ".gitignore" ".git/" ".emacs.d/" ".custom.el" ".backups/" "../" "./")
 
  ("d:/Emacs/" (22106 5832 0 0) "var/" "share/" "libexec/" "home/" "bin/" "../" "./")
 )
