@@ -24,27 +24,7 @@
 
 ;; 指定新建buffer的默认编码为utf-8
 (setq default-buffer-file-coding-system 'utf-8)
-(setq current-language-environment "UTF-8")
-;; (setq locale-coding-system 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-;;; (set-selection-coding-system 'utf-8)
-;;; (set-clipboard-coding-system 'utf-8)
-(set-buffer-file-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(modify-coding-system-alist 'process "*" 'utf-8)
-(setq default-process-coding-system '(utf-8 . utf-8))
-;;;; (setq-default pathname-coding-system 'utf-8)
-(set-file-name-coding-system 'utf-8)
 (setq ansi-color-for-comint-mode t)
-;; set writing buffer default to utf-8, or emacs always show encoding
-;; problem when saving files.
-(setq save-buffer-coding-system 'utf-8)
-(setq coding-system-for-write 'utf-8)
-
-(set-default 'process-coding-system-alist
-      '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
-	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)))
 
 ;;将utf-8放到编码顺序表的最开始，即先从utf-8开始识别编码，此命令可以多次使用，后指定的编码先探测  
 (prefer-coding-system 'utf-8)
@@ -479,7 +459,7 @@
                     ;:family "Monaco"
                     :background "gray80"
                     :foreground "gray30"
-                    :height 1.0
+                    :height 1.0                    
                     )
 
 ;; 设置左边按钮外观：外框框边大小和颜色
