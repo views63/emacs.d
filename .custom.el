@@ -26,6 +26,22 @@
 (setq default-buffer-file-coding-system 'utf-8)
 (setq ansi-color-for-comint-mode t)
 
+(set-language-environment "UTF-8")
+(set-default-coding-systems 'utf-8)
+(set-buffer-file-coding-system 'utf-8-unix)
+(set-clipboard-coding-system 'utf-8-unix)
+(set-file-name-coding-system 'utf-8-unix)
+(set-keyboard-coding-system 'utf-8-unix)
+(set-next-selection-coding-system 'utf-8-unix)
+(set-selection-coding-system 'utf-8-unix)
+(set-terminal-coding-system 'utf-8-unix)
+(setq locale-coding-system 'utf-8)
+
+(when (eq system-type 'windows-nt)
+   (set-default 'process-coding-system-alist
+     '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
+	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos))))
+
 ;;将utf-8放到编码顺序表的最开始，即先从utf-8开始识别编码，此命令可以多次使用，后指定的编码先探测  
 (prefer-coding-system 'utf-8)
 (prefer-coding-system 'chinese-gbk)
