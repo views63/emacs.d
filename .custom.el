@@ -1,3 +1,5 @@
+
+
 ;; begin 基础设置
 ;; Mark some symbols as end of sentences.
 (setq sentence-end "\\([。！？；]\\|……\\|[.?!;][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
@@ -316,7 +318,7 @@
 ;;(require 'color-theme-molokai)
 ;;(color-theme-molokai)
 ;;配色方案
-(require 'solarized)
+;; (require 'solarized)
 (load-theme 'solarized-dark t)
 (global-font-lock-mode t)
 

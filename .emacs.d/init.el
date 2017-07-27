@@ -32,7 +32,7 @@
  '(nxml-child-indent 4)
  '(package-selected-packages
    (quote
-    (yasnippet tabbar sr-speedbar smex smartparens session pos-tip lua-mode helm-gtags ggtags fuzzy color-theme-solarized auto-complete)))
+    (solarized-theme color-theme-sanityinc-tomorrow undo-tree yasnippet tabbar sr-speedbar smex smartparens session pos-tip lua-mode helm-gtags ggtags fuzzy color-theme-solarized auto-complete)))
  '(session-use-package t nil (session)))
 ;;; Local Variables:
 ;;; no-byte-compile: t
