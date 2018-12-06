@@ -3,9 +3,11 @@
 ;;设置package源
 (require 'package)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                           ("marmalade" . "https://marmalade-repo.org/packages/")
-                           ("melpa" . "https://melpa.milkbox.net/packages/"))) 
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 (package-initialize)
+(add-to-list 'package-archives
+          '("popkit" . "http://elpa.popkit.org/packages/"))
 
 ;;----------------------------------------------------------------------------
 ;; Variables configured via the interactive 'customize' interface
@@ -32,7 +34,7 @@
  '(nxml-child-indent 4)
  '(package-selected-packages
    (quote
-    (solarized-theme color-theme-sanityinc-tomorrow undo-tree yasnippet tabbar sr-speedbar smex smartparens session pos-tip lua-mode helm-gtags ggtags fuzzy color-theme-solarized auto-complete)))
+    (auctex solarized-theme color-theme-sanityinc-tomorrow undo-tree yasnippet tabbar sr-speedbar smex smartparens session pos-tip lua-mode helm-gtags ggtags fuzzy color-theme-solarized auto-complete)))
  '(session-use-package t nil (session)))
 ;;; Local Variables:
 ;;; no-byte-compile: t

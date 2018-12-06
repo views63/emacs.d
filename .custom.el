@@ -1,5 +1,3 @@
-
-
 ;; begin 基础设置
 ;; Mark some symbols as end of sentences.
 (setq sentence-end "\\([。！？；]\\|……\\|[.?!;][]\"')}]*\\($\\|[ \t]\\)\\)[ \t\n]*")
@@ -7,42 +5,38 @@
 ;; Set the pattern that might be used as line start.
 (setq adaptive-fill-regexp "[ \t]+\\|[ \t]*\\([0-9]+\\.\\|\\*+\\)[ \t]*")
 
-;; Enable `auto-fill-mode' which can wrap lines for you.  Very handy.
-;;(add-hook 'text-mode-hook
-;;          (lambda () (auto-fill-mode t)))
-
-;; This is a font configuration example for Chinese
-;; (set-default-font "Monaco:pixelsize=18")
-;; (set-face-attribute 'default nil :font "Inconsolata 17") ;: height 130
-(set-default-font "-outline-Tsentsiu Mono HG-normal-normal-normal-mono-18-*-*-*-c-*-iso8859-1")
+;; (set-default-font "-outline-等距更纱黑体 SC-normal-normal-normal-mono-20-*-*-*-c-*-iso8859-1")
+(set-face-attribute 'default nil :font
+                    (format "%s:pixelsize=%d" "等距更纱黑体 SC" 20))
 
 ;; Chinese Font
-(dolist (charset '(han gb18030 chinese-gbk bopomofo cjk-misc symbol))
-  (set-fontset-font t charset (font-spec :family "Tsentsiu Mono HG" :size 18)))
+(dolist (charset '(kana han gb18030 chinese-gbk symbol cjk-misc bopomofo))
+  (set-fontset-font (frame-parameter nil 'font)
+                    charset
+                    (font-spec :family "等距更纱黑体 SC" :size 20)))
 
 (set-fontset-font t 'unicode "Symbola" nil 'append)
 (set-fontset-font t 'unicode "Segoe UI Emoji" nil 'append)
-(set-fontset-font t 'unicode "STIX" nil 'append)
 
 ;; 指定新建buffer的默认编码为utf-8
 (setq default-buffer-file-coding-system 'utf-8)
 (setq ansi-color-for-comint-mode t)
 
 (set-language-environment "UTF-8")
-(set-default-coding-systems 'utf-8)
-(set-buffer-file-coding-system 'utf-8-unix)
-(set-clipboard-coding-system 'utf-8-unix)
-(set-file-name-coding-system 'utf-8-unix)
-(set-keyboard-coding-system 'utf-8-unix)
-(set-next-selection-coding-system 'utf-8-unix)
-(set-selection-coding-system 'utf-8-unix)
-(set-terminal-coding-system 'utf-8-unix)
-(setq locale-coding-system 'utf-8)
+(setq locale-coding-system 'gbk)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
 
 (when (eq system-type 'windows-nt)
-   (set-default 'process-coding-system-alist
-     '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
-	("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos))))
+  (setq-default process-coding-system-alist
+                '(("[pP][lL][iI][nN][kK]" gbk-dos . gbk-dos)
+		  ("[pP][iI][nN][gG]" gbk-dos . gbk-dos)
+		  ("[cC][mM][dD][pP][rR][oO][xX][yY]" gbk-dos . gbk-dos)
+		  ("[gG][sS]" gbk-dos . gbk-dos)
+		  ("[fF][iI][nN][dD]" gbk-dos . gbk-dos)
+		  ("[gG][rR][eE][pP]" gbk-dos . gbk-dos)
+		  ("[gG][sS][wW][iI][nN]32[cC]" gbk-dos . gbk-dos))))
 
 ;;将utf-8放到编码顺序表的最开始，即先从utf-8开始识别编码，此命令可以多次使用，后指定的编码先探测  
 (prefer-coding-system 'utf-8)
@@ -56,7 +50,7 @@
 (set-frame-position (selected-frame) 30 30)
 
 ;;设置宽和高
-(set-frame-width (selected-frame) 120)
+(set-frame-width (selected-frame) 130)
 (set-frame-height (selected-frame) 35)
 
 ;;高亮当前行
@@ -140,13 +134,11 @@
 ;; 显示行列号
 (setq column-number-mode t)
 (setq line-number-mode t)
-
-;;在左边显示行号
-(global-linum-mode 'linum-mode)
+(global-display-line-numbers-mode t)
 
 ;;禁用启动信息  
 (setq inhibit-startup-message t			 ;; don't show ...	  
-	  inhibit-startup-echo-area-message t)	 ;; ... startup messages
+      inhibit-startup-echo-area-message t)	 ;; ... startup messages
 (setq require-final-newline t)           ;; end files with a newline
 
 ;; 最近打开
@@ -169,7 +161,7 @@
 ;;   (let (default-directory-old default-directory)
 ;;     (progn (cd load-path-name) 
 ;;        (normal-top-level-add-subdirs-to-load-path))))
- 
+
 ;; (add-to-load-path "~/etc/emacs23/site-lisp") 
 
 ;; end 基础配置
@@ -419,10 +411,12 @@
 
 ;;use highlight-indentation
 ;; (require 'highlight-indentation)
+;; (set-face-background 'highlight-indentation-face "#e3e3d3")
+;; (set-face-background 'highlight-indentation-current-column-face "#c3b3b3")
 ;; (add-hook 'nxml-mode-hook 'highlight-indentatoin-mode)
 ;; (add-hook 'nxml-mode-hook 'highlight-indentatoin-current-column-mode)
 
-;;;代码折叠
+;; 代码折叠
 (require 'yafolding)
 (global-set-key [f4] 'yafolding-toggle-element)
 
@@ -474,7 +468,7 @@
 ;; 设置tabbar外观
 ;; 设置默认主题: 字体, 背景和前景颜色，大小
 (set-face-attribute 'tabbar-default nil
-                    ;:family "Monaco"
+                                        ;:family "Monaco"
                     :background "gray80"
                     :foreground "gray30"
                     :height 1.0                    
@@ -549,39 +543,6 @@
 (require 'smartparens-config)
 (smartparens-global-mode 1)
 
-;;开启cedet的semantic自动补全
-;; (require 'cedet)
-;; (setq semantic-default-submodes
-;;       '(global-semantic-idle-scheduler-mode
-;;         global-semanticdb-minor-mode
-;;         global-semantic-idle-summary-mode
-;;         global-semantic-mru-bookmark-mode
-;;         global-semantic-idle-completions-mode
-;;         global-semantic-decoration-mode
-;;         global-semantic-highlight-func-mode))
-;; (semantic-mode 1)
-
-;; ;; 加载跳转功能
-;; (require 'semantic/analyze/refs)
-
-;; (global-semantic-highlight-edits-mode (if window-system 1 -1))
-;; (global-semantic-show-unmatched-syntax-mode 1)
-;; (global-semantic-show-parser-state-mode 1)
-
-;; ;; 这几个provide都很重要
-;; (provide 'semantic-analyze)
-;; (provide 'semantic-ctxt)
-;; (provide 'semanticdb)
-;; (provide 'semanticdb-find)
-;; (provide 'semanticdb-mode)
-;; (provide 'semantic-load)
-
-;;;(add-to-list 'load-path "~/plugings/window-manager/")
-;;;;;;(Provide 'init-e2wm)
-;;;(require 'e2wm)
-;;;(global-set-key (kbd "M-+") 'e2wm:start-management)
-;;;(global-set-key (kbd "M--") 'e2wm:stop-management) 
-
 ;; lua-mode
 ;; (add-to-list 'load-path "~/plugings/lua-mode/")
 (require 'lua-mode)
@@ -614,7 +575,7 @@
 ;; 默认不开启 evil-mode
 ;;(setq evil-default-state 'emacs)  (setq exec-path (cons "/usr/local/git/bin/" exec-path))
 
-; undo-tree 可视化撤销
+                                        ; undo-tree 可视化撤销
 (require 'undo-tree)
 (global-undo-tree-mode)
 
@@ -624,7 +585,7 @@
 ;; smex
 (autoload 'smex "smex" nil t)
 ;; (smex-initialize) ; Can be omitted. This might cause a (minimal) delay
-                  ; when Smex is auto-initialized on its first run.
+                                        ; when Smex is auto-initialized on its first run.
 
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands)
@@ -643,8 +604,8 @@
 (defadvice kill-ring-save (before slickcopy activate compile)
   (interactive
    (if mark-active (list (region-beginning) (region-end))
-      (list (line-beginning-position)
-            (line-beginning-position 2)))))
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
 
 ;; 在行末或行中位置删除整行
 (defadvice kill-region (before slickcut activate compile)
@@ -659,6 +620,30 @@
 (eval-after-load "ace-jump-mode" '(ace-jump-mode-enable-mark-sync))
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 (define-key global-map (kbd "C-x SPC") 'ace-jump-mode-pop-mark)
-	
+
 ;; 减少垃圾回收加快Emacs的运行 
 (setq gc-cons-threshold (* 50 1024 1024))
+
+
+;; auctex
+(load "auctex.el" nil t t)
+;; (load "preview-latex.el" nil t t)
+
+(setq TeX-auto-untabify t)     
+(setq TeX-show-compilation t) 
+(setq-default TeX-PDF-mode t)
+(setq TeX-save-query nil)
+(setq-default TeX-engine 'xetex)
+(setq Tex-parse-self t)
+(setq-default Tex-master nil)
+(add-hook 'doc-view-mode-hook 'auto-revert-mode)
+
+(setq TeX-view-program-list
+      '(("Sumatra PDF" ("\"D:/Emacs/bin/SumatraPDF.exe\" -reuse-instance"
+                        (mode-io-correlate "-forward-search %b %n ") "%o"
+                        )))
+      )
+(eval-after-load 'tex
+  '(progn
+     (assq-delete-all 'output-pdf TeX-view-program-selection)
+     (add-to-list 'TeX-view-program-selection '(output-pdf "Sumatra PDF"))))
